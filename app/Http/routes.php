@@ -13,12 +13,8 @@
 
 Route::get('/','Insugg@index');
 Route::get('insugg','Insugg@index');
-Route::get('suggestion',function(){
-	return view("suggestions.suggestions");
-});
-Route::get('tag',function(){
-	return view("tags.tags");
-});
+Route::get('suggestion','Suggestion@index');
+Route::get('tag','Tag@index');
 Route::get('user',function(){
 	return view("users.users");
 });

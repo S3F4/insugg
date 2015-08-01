@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Insugg as InsuggModel;
 
-class Insugg extends Controller
+class Tag extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +16,8 @@ class Insugg extends Controller
      */
     public function index()
     {
-        //$insuggs = InsuggModel::find(["insuggid",1]);
-        //$insuggs = DB::table('insugg')->where('insuggid',1)->first();
-        //$insuggs = DB::select("SELECT * FROM insugg");
-		$insuggs = InsuggModel::all();
-        return view("insuggs.insuggs")->with("insuggs",$insuggs);
+        $tags = \App\Tag::all();
+        return view('tags.tags')->with('tags',$tags);
     }
 
     /**
