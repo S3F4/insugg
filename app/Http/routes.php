@@ -18,5 +18,18 @@ Route::get('tag','Tag@index');
 Route::get('user',function(){
 	return view("users.users");
 });
-//Route::get('');
-//Route::get('');
+
+// route to show the login form
+Route::get('login', array('uses' => 'HomeController@showLogin'));
+
+// route to process the form
+Route::post('login', array('uses' => 'HomeController@doLogin'));
+
+Route::get('logout', array('uses' => 'HomeController@doLogout'));
+
+Route::get('x', ['middleware' => 'auth', function()
+{
+	// if user is not logged in
+	// he/she will be redirected to the login page
+	// and this code will not be executed
+}]);
