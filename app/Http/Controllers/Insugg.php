@@ -21,7 +21,7 @@ class Insugg extends Controller
         //$insuggs = DB::table('insugg')->where('insuggid',1)->first();
         //$insuggs = DB::select("SELECT * FROM insugg");
 		$insuggs = InsuggModel::all();
-        return view("insuggs.insuggs")->with("insuggs",$insuggs);
+        return view("insugg.insuggs")->with("insuggs",$insuggs);
     }
 
     /**
@@ -53,7 +53,8 @@ class Insugg extends Controller
      */
     public function show($id)
     {
-        //
+        $insugg = \App\Insugg::where('insuggid',$id)->first();
+        return $insugg;
     }
 
     /**

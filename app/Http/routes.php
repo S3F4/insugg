@@ -11,25 +11,46 @@
 |
 */
 
-Route::get('/','Insugg@index');
-Route::get('insugg','Insugg@index');
-Route::get('suggestion','Suggestion@index');
-Route::get('tag','Tag@index');
-Route::get('user',function(){
-	return view("users.users");
+Route::get('mobile',function(){
+	return view('mobile');
 });
 
-// route to show the login form
-Route::get('login', array('uses' => 'HomeController@showLogin'));
+Route::get('user','User@Index');
+Route::get('user/{id}','User@show');
 
-// route to process the form
-Route::post('login', array('uses' => 'HomeController@doLogin'));
+Route::get('/','Insugg@index');
+Route::get('insugg','Insugg@index');
+Route::get('insugg/{id}','Insugg@show');
 
-Route::get('logout', array('uses' => 'HomeController@doLogout'));
+Route::get('createInsugg',function(){
+	return view('insugg.createInsugg');
+});
 
-Route::get('x', ['middleware' => 'auth', function()
-{
-	// if user is not logged in
-	// he/she will be redirected to the login page
-	// and this code will not be executed
-}]);
+Route::get('tag','Tag@index');
+Route::get('tag/{id}','Tag@show');
+
+Route::get('suggestion','Suggestion@index');
+Route::get('suggestion/{id}','Suggestion@show');
+
+
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+Route::get('profile','User@profile');
+
+//Aliases config/app.php de

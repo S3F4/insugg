@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
-class Suggestion extends Controller
+class User extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class Suggestion extends Controller
      */
     public function index()
     {
-        $suggestions = \App\Suggestion::all();
-        return view('suggestions')->with("suggestions",$suggestions);
+        $users = \App\User::all();
+        return view('user.users')->with('users',$users);
     }
 
     /**
@@ -49,8 +49,20 @@ class Suggestion extends Controller
      */
     public function show($id)
     {
-        $suggestion = \App\Suggestion::where('suggestionid',$id)->first();
-        return $suggestion;
+        $user = App\User::where('id',$id)->first();
+        return $user->email;
+    }
+
+    /**
+     *
+     */
+    public function profile(){
+        if(Auth::check()){
+            return view('user.profile');
+        }else{
+			return view('auth.login');
+		}
+
     }
 
     /**

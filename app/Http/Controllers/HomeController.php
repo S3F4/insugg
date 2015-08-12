@@ -27,6 +27,7 @@ class HomeController extends Controller
 
 	public function doLogin()
 	{
+
 // validate the info, create rules for the inputs
 		$rules = array(
 			'email' => 'required|email', // make sure the email is an actual email

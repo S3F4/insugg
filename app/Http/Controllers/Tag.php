@@ -17,7 +17,7 @@ class Tag extends Controller
     public function index()
     {
         $tags = \App\Tag::all();
-        return view('tags.tags')->with('tags',$tags);
+        return view('tags')->with('tags',$tags);
     }
 
     /**
@@ -49,7 +49,8 @@ class Tag extends Controller
      */
     public function show($id)
     {
-        //
+        $tag = \App\Tag::where('tagid',$id)->first();
+        return $tag;
     }
 
     /**

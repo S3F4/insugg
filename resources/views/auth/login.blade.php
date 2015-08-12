@@ -3,13 +3,8 @@
 @section('description','Description')
 @section('keywords','Keywords')
 @section('content')
-    <form method="POST" action="/auth/register">
+    <form method="POST" action="/auth/login">
         {!! csrf_field() !!}
-
-        <div>
-            Name
-            <input type="text" name="name" value="{{ old('name') }}">
-        </div>
 
         <div>
             Email
@@ -18,16 +13,15 @@
 
         <div>
             Password
-            <input type="password" name="password">
+            <input type="password" name="password" id="password">
         </div>
 
         <div>
-            Confirm Password
-            <input type="password" name="password_confirmation">
+            <input type="checkbox" name="remember"> Remember Me
         </div>
 
         <div>
-            <button type="submit">Register</button>
+            <button type="submit">Login</button>
         </div>
     </form>
 @endsection

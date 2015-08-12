@@ -35,7 +35,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="#"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span>&nbsp;Mobil
+                        <li><a href="mobile"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span>&nbsp;Mobil
                                 <span class="sr-only">(current)</span></a></li>
                     </ul>
                     <form class="navbar-form navbar-left" role="search">
@@ -44,7 +44,54 @@
                         </div>
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
-                    @yield('rightHead')
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="createInsugg">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;insugg Oluştur
+                            </a>
+                        </li>
+                        <li>
+                            <a href="insugg">
+                                &nbsp;insugglar
+                            </a>
+                        </li>
+                        <li>
+                            <a href="suggestion">
+                                &nbsp;öneriler
+                            </a>
+                        </li>
+                        <li>
+                            <a href="user">
+                                &nbsp;üyeler
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            @if(\Illuminate\Support\Facades\Auth::user())
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;{{\Illuminate\Support\Facades\Auth::user()->name}}
+                                    <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/profile">Profil</a></li>
+                                    <li><a href="/auth/logout">Çıkış</a></li>
+                                    <li><a href="/password/email">Gizlilik</a></li>
+                                </ul>
+                            @else
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Üyelik
+                                    <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/auth/login">Giriş</a></li>
+                                    <li><a href="/auth/register">Kayıt</a></li>
+                                    <li><a href="/auth/logout">Çıkış</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="/password/email">Sifremi Unuttum</a></li>
+                                    <li><a href="/profile">Profil</a></li>
+                                </ul>
+                            @endif
+                        </li>
+                    </ul>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
@@ -63,7 +110,10 @@
                     <h3 class="panel-title">Etiketler</h3>
                 </div>
                 <div class="panel-body">
-                    @yield('tags')
+
+                    @foreach(App\Tag::all() as $tag)
+                        <a href="tag/{{$tag->tagid}}">{{$tag->tag}}</a>
+                        @endforeach
                 </div>
             </div>
             <div class="panel panel-default">
@@ -72,7 +122,14 @@
                 </div>
                 <div class="panel-body">
                     <div class="list-group">
-                        @yield('users')
+                        
+                        @foreach(App\User::all() as $user)
+                            <a href="user/{{$user->id}}" class="list-group-item">
+                                <h4 class="list-group-item-heading">{{$user->name}}</h4>
+
+                                <p class="list-group-item-text">{{$user->email}}</p>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
             </div>
