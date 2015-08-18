@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\User;
 
-class UserTableSeeder extends Seeder
+class TagTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,15 +11,13 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('user')->delete();
+        DB::table('tag')->delete();
         $faker = Faker\Factory::create();
 
         for ($i = 0; $i < 100; $i++)
         {
-            $user = User::create(array(
-                'username' => $faker->userName,
-                'useremail' => $faker->email,
-                'password' => $faker->word
+            $user = \App\Tag::create(array(
+                'tag' => $faker->word
             ));
         }
     }

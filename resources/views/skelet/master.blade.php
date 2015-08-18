@@ -35,7 +35,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="mobile"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span>&nbsp;Mobil
+                        <li><a href="/mobile"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span>&nbsp;Mobil
                                 <span class="sr-only">(current)</span></a></li>
                     </ul>
                     <form class="navbar-form navbar-left" role="search">
@@ -46,22 +46,22 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="createInsugg">
+                            <a href="/createInsugg">
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;insugg Oluştur
                             </a>
                         </li>
                         <li>
-                            <a href="insugg">
+                            <a href="/insugg">
                                 &nbsp;insugglar
                             </a>
                         </li>
                         <li>
-                            <a href="suggestion">
+                            <a href="/suggestion">
                                 &nbsp;öneriler
                             </a>
                         </li>
                         <li>
-                            <a href="user">
+                            <a href="/user">
                                 &nbsp;üyeler
                             </a>
                         </li>
@@ -69,7 +69,7 @@
                             @if(\Illuminate\Support\Facades\Auth::user())
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                    aria-expanded="false">
-                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;{{\Illuminate\Support\Facades\Auth::user()->name}}
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;{{\Illuminate\Support\Facades\Auth::user()->username}}
                                     <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/profile">Profil</a></li>
@@ -116,7 +116,7 @@
                         @endforeach
                 </div>
             </div>
-            <div class="panel panel-default">
+           <!-- <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Aktif Üyeler</h3>
                 </div>
@@ -125,14 +125,14 @@
                         
                         @foreach(App\User::all() as $user)
                             <a href="user/{{$user->id}}" class="list-group-item">
-                                <h4 class="list-group-item-heading">{{$user->name}}</h4>
+                                <h4 class="list-group-item-heading">{{$user->username}}</h4>
 
-                                <p class="list-group-item-text">{{$user->email}}</p>
+                                <p class="list-group-item-text">{{$user->useremail}}</p>
                             </a>
                         @endforeach
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
     <hr/>

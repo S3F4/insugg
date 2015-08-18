@@ -4,7 +4,7 @@
 @section('keywords','Keywords')
 @section('content')
     <div class="row">
-        <form role="form" method="post" action="createInsugg">
+        <form role="form" method="post" action="/insugg/{{$id}}/edit">
             <div>
                 {!! csrf_field() !!}
                 <div class="form-group">

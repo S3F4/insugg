@@ -9,5 +9,6 @@
             <p class="list-group-item-text">{{$tag->tag}}</p>
         </a>
     @endforeach
+    {!! $tags->render() !!}
 @endsection
 @section('footer','buraya insuggs footer geldi.')

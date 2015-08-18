@@ -16,18 +16,8 @@ class Tag extends Controller
      */
     public function index()
     {
-        $tags = \App\Tag::all();
+        $tags = \App\Tag::paginate(15);
         return view('tags')->with('tags',$tags);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -73,7 +63,13 @@ class Tag extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tag = \App\Tag::where('tagid',$id);
+        $tag->tag = $request->tag;
+        if($tag->save()){
+            return "tag updated";
+        }else{
+            return "tag didnt update";
+        }
     }
 
     /**
@@ -84,6 +80,9 @@ class Tag extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tagmaps = DB::select('select * from tagmap where tagid=?',$id);
+        $tagmaps->destroy();
+        $tag = \App\Tag::where('tagid',$id)-first();
+        $tag->destroy();
     }
 }

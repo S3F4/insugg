@@ -21,6 +21,11 @@ Route::get('user/{id}','User@show');
 Route::get('/','Insugg@index');
 Route::get('insugg','Insugg@index');
 Route::get('insugg/{id}','Insugg@show');
+Route::post('createInsugg','Insugg@store');
+Route::get('insugg/{id}/edit','Insugg@edit');
+Route::post('insugg/{id}/edit','Insugg@update');
+Route::get('insugg/{id}/delete','Insugg@destroy');
+
 
 Route::get('createInsugg',function(){
 	return view('insugg.createInsugg');
@@ -51,6 +56,7 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
-Route::get('profile','User@profile');
+
+Route::get('profile', 'User@profile');
 
 //Aliases config/app.php de

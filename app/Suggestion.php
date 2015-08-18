@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Suggestion extends Model
 {
-    protected $table = "suggestion";
+	protected $table = "suggestion";
+
+	protected $primaryKey = "suggestionid";
 }

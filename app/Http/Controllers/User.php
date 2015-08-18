@@ -16,30 +16,10 @@ class User extends Controller
      */
     public function index()
     {
-        $users = \App\User::all();
+        $users = \App\User::paginate(15);
         return view('user.users')->with('users',$users);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -49,8 +29,8 @@ class User extends Controller
      */
     public function show($id)
     {
-        $user = App\User::where('id',$id)->first();
-        return $user->email;
+        $user = App\User::where('userid',$id)->first();
+        return $user;
     }
 
     /**
