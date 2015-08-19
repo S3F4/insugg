@@ -112,7 +112,7 @@
                 <div class="panel-body">
 
                     @foreach(App\Tag::all() as $tag)
-                        <a href="tag/{{$tag->tagid}}">{{$tag->tag}}</a>
+                        <a href="/tag/{{$tag->tagid}}">{{$tag->tag}}</a>
                         @endforeach
                 </div>
             </div>

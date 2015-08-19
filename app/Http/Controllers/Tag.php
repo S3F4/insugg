@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Collection;
 
 class Tag extends Controller
 {
@@ -40,7 +41,9 @@ class Tag extends Controller
     public function show($id)
     {
         $tag = \App\Tag::where('tagid',$id)->first();
-        return $tag;
+        $insuggs = $tag->insuggsOfTag()->paginate(20);
+        return view('tag.tag')->with('insuggs',$insuggs);
+
     }
 
     /**

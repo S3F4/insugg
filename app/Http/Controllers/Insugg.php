@@ -31,7 +31,10 @@ class Insugg extends Controller
 	 */
 	public function create()
 	{
-		//
+		if (Auth::check())
+			return view("insugg.createInsugg");
+		else
+			return Redirect::to("http://insugg.com");
 	}
 
 	/**
@@ -62,7 +65,8 @@ class Insugg extends Controller
 	public function show($id)
 	{
 		$insugg = InsuggModel::where('insuggid', $id)->first();
-		return $insugg;
+		$suggestions = $insugg->suggestions()->get();
+		return view('insugg.insugg')->with(['insugg' => $insugg , 'suggestions' => $suggestions]);
 	}
 
 	/**
@@ -73,7 +77,7 @@ class Insugg extends Controller
 	 */
 	public function edit($id, Request $request)
 	{
-		return view('insugg.editInsugg')->with('id',$id);
+		return view('insugg.editInsugg')->with('id', $id);
 	}
 
 	/**
@@ -112,10 +116,10 @@ class Insugg extends Controller
 	 */
 	public function destroy($id)
 	{
-		if(Auth::check()){
+		if (Auth::check()) {
 			InsuggModel::destroy($id);
 			return Redirect::to('http://insugg.com');
-		}else{
+		} else {
 
 		}
 	}

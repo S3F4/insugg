@@ -22,15 +22,6 @@ class Suggestion extends Controller
 		return view('suggestions')->with("suggestions", $suggestions);
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
 
 	/**
 	 * Store a newly created resource in storage.
@@ -42,6 +33,7 @@ class Suggestion extends Controller
 	{
 		if (Auth::check()) {
 			$suggestion = new \App\Suggestion();
+			$suggestion->insuggid = $request->insuggid;
 			$suggestion->suggestion = $request->suggestion;
 			$suggestion->userid = $request->user()->userid;
 			$suggestion->requestip = $request->getClientIp();
@@ -117,7 +109,7 @@ class Suggestion extends Controller
 					return 0;
 				}
 			}
-		}else{
+		} else {
 			return "get out";
 		}
 

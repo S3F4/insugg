@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    protected $table = "tag";
+	protected $table = "tag";
 
-    protected $primaryKey = "tagid";
+	protected $primaryKey = "tagid";
+
+	public function insuggsOfTag()
+	{
+        return $this->hasManyThrough('\App\Tagmap','\App\Insugg','insuggid','tagid');
+	}
 }

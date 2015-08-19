@@ -27,9 +27,7 @@ Route::post('insugg/{id}/edit','Insugg@update');
 Route::get('insugg/{id}/delete','Insugg@destroy');
 
 
-Route::get('createInsugg',function(){
-	return view('insugg.createInsugg');
-});
+Route::get('createInsugg','Insugg@create');
 
 Route::get('tag','Tag@index');
 Route::get('tag/{id}','Tag@show');
