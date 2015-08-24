@@ -4,7 +4,7 @@
 @section('keywords','Keywords')
 @section('content')
     @foreach($users as $user)
-    <a href="user/{{$user->userid}}" class="list-group-item">
+    <a href="/user/{{$user->userid}}" class="list-group-item">
         <h4 class="list-group-item-heading">{{$user->useremail}}</h4>
 
         <p class="list-group-item-text">{{$user->username}}</p>

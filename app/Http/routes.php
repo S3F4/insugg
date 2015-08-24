@@ -15,8 +15,9 @@ Route::get('mobile',function(){
 	return view('mobile');
 });
 
-Route::get('user','User@Index');
-Route::get('user/{id}','User@show');
+Route::get('user','User@index');
+Route::get('user/{id}/{get?}','User@show');
+Route::get('profile/{get?}', 'User@profile');
 
 Route::get('/','Insugg@index');
 Route::get('insugg','Insugg@index');
@@ -54,7 +55,5 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
-
-Route::get('profile', 'User@profile');
 
 //Aliases config/app.php de

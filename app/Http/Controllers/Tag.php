@@ -41,7 +41,7 @@ class Tag extends Controller
     public function show($id)
     {
         $tag = \App\Tag::where('tagid',$id)->first();
-        $insuggs = $tag->insuggsOfTag()->paginate(20);
+        $insuggs = $tag->insuggs()->paginate(20);
         return view('tag.tag')->with('insuggs',$insuggs);
 
     }

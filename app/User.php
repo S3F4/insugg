@@ -37,7 +37,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function suggestions()
 	{
-		return $this->hasMany('\App\Suggestion', 'userid');
+		return $this->hasMany('\App\Suggestion','userid');
 	}
 
 	public function insuggs()

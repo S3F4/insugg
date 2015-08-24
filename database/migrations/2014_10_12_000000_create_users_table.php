@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->string('userprofilephotourl')->nullable();
             $table->string('username');
             $table->string('useremail')->unique();
+            $table->string('userdefinition');
             $table->string('usertype');
             $table->string('password', 60);
             $table->boolean('is_active');

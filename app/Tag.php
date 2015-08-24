@@ -10,8 +10,8 @@ class Tag extends Model
 
 	protected $primaryKey = "tagid";
 
-	public function insuggsOfTag()
+	public function insuggs()
 	{
-        return $this->hasManyThrough('\App\Tagmap','\App\Insugg','insuggid','tagid');
+        return $this->hasManyThrough('\App\Insugg','\App\Tagmap','tagid','insuggid');
 	}
 }

@@ -101,14 +101,13 @@ class Suggestion extends Controller
 	public function destroy($id)
 	{
 		if (Auth::check()) {
-			$suggestion = \App\Suggestion::where('suggestionid', $id);
-			if ($suggestion) {
-				if ($suggestion->destroy()) {
-					return Redirect::to('http://insugg.com');
-				} else {
-					return 0;
-				}
+
+			if (\App\Suggestion::destroy($id)) {
+				return Redirect::to('http://insugg.com');
+			} else {
+				return 0;
 			}
+			
 		} else {
 			return "get out";
 		}

@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Insugg as InsuggModel;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 
 class Insugg extends Controller
 {
@@ -50,7 +52,31 @@ class Insugg extends Controller
 			$insugg->insuggtitle = $request->insuggTitle;
 			$insugg->insuggcontent = $request->insuggContent;
 			$insugg->requestIp = $request->getClientIp();
-			$insugg->save();
+			$insuggid = 0;
+			if($insugg->save()){
+				$insuggid = $insugg->insuggid;
+			}
+			$tags = $request->tags;
+			$tags = explode(' ',$tags);
+			foreach($tags as $tag){
+				$tagOnTagMap = \App\Tag::where('tag',$tag)->first();
+				if(($tagOnTagMap) != null){
+					\App\Tagmap::insert([
+						'tagid' => $tagOnTagMap->tagid,
+						'insuggid' => $insuggid
+					]);
+				}else{
+					$tagNew = new \App\Tag();
+					$tagNew->tag = $tag;
+					if($tagNew->save()){
+						\App\Tagmap::insert([
+							'tagid' => $tagNew->tagid,
+							'insuggid' => $insuggid
+						]);
+					}
+				}
+			}
+			return Redirect::to('http://insugg.com');
 		} else {
 			return "get out here";
 		}
@@ -116,11 +142,9 @@ class Insugg extends Controller
 	 */
 	public function destroy($id)
 	{
-		if (Auth::check()) {
-			InsuggModel::destroy($id);
-			return Redirect::to('http://insugg.com');
-		} else {
-
-		}
+		DB::delete("DELETE FROM insugg WHERE insuggid = ?",[$id]);
+		//$query = DB::statement("CALL delete_insugg()");
+		//var_dump($query);die;
+		return Redirect::to('http://insugg.com');
 	}
 }
