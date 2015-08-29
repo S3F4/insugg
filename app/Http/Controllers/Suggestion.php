@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -52,7 +53,8 @@ class Suggestion extends Controller
 	public function show($id)
 	{
 		$suggestion = \App\Suggestion::where('suggestionid', $id)->first();
-		return $suggestion;
+		$insugg = \App\Insugg::where('insuggid', $suggestion->insuggid)->first();
+		return Redirect::to("/insugg/$insugg->insuggid/");
 	}
 
 	/**
@@ -105,9 +107,9 @@ class Suggestion extends Controller
 			if (\App\Suggestion::destroy($id)) {
 				return Redirect::to('http://insugg.com');
 			} else {
-				return 0;
+				return Redirect::to('http://insugg.com/fail');
 			}
-			
+
 		} else {
 			return "get out";
 		}

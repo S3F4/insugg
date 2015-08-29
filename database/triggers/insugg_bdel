@@ -1,0 +1,30 @@
+USE `insugg`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` TRIGGER `insugg_BDEL` BEFORE DELETE ON `insugg` FOR EACH ROW
+  BEGIN
+    DECLARE done INT DEFAULT FALSE;
+    DECLARE tagidV INT;
+    DECLARE tagmapCursor CURSOR FOR SELECT tagid FROM tagmap where tagmap.insuggid = old.insuggid;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+    delete from suggestion where suggestion.insuggid = old.insuggid;
+
+    OPEN tagmapCursor;
+
+    read_loop: LOOP
+      FETCH tagmapCursor INTO tagidV;
+      IF done THEN
+        LEAVE read_loop;
+      END IF;
+      set @tagmapCount = (select count(*) from tagmap where tagmap.insuggid = old.insuggid);
+      IF @tagmapCount > 0 THEN
+        delete from tagmap where tagmap.tagid = tagidV;
+        set @tagmapCount = (select count(*) from tagmap where tagmap.tagid = tagidV);
+        IF @tagmapCount = 0 THEN
+          delete from tag where tag.tagid = tagidV;
+        end if;
+      END IF;
+    END LOOP;
+
+    CLOSE tagmapCursor;
+  END

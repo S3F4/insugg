@@ -8,16 +8,9 @@
             <div>
                 {!! csrf_field() !!}
                 <div class="form-group">
-                    <label for="InputEmail">Insugg Başlığı</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="InputEmailSecond" name="insuggTitle" placeholder="Başlık" required>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-leaf"></span></span>
-                    </div>
-                </div>
-                <div class="form-group">
                     <label for="InputMessage">Insugg :</label>
                     <div class="input-group">
-                        <textarea name="insuggContent" id="InputMessage" class="form-control" rows="5" required></textarea>
+                        <textarea name="insugg" id="InputMessage" class="form-control" rows="5" required></textarea>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
                     </div>
                 </div>

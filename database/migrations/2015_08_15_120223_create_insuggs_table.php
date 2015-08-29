@@ -17,8 +17,7 @@ class CreateInsuggsTable extends Migration
 		 */
 		Schema::create('insugg', function (Blueprint $table) {
 			$table->increments('insuggid');
-			$table->string('insuggtitle');
-			$table->string('insuggcontent');
+			$table->string('insugg');
 			$table->string('requestIp');
 			$table->integer('userid')->nullable();
 			$table->integer('whom_userid')->nullable();

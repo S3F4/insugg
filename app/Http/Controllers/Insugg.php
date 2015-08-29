@@ -49,8 +49,7 @@ class Insugg extends Controller
 	{
 		if (Auth::check()) {
 			$insugg = new InsuggModel();
-			$insugg->insuggtitle = $request->insuggTitle;
-			$insugg->insuggcontent = $request->insuggContent;
+			$insugg->insugg = $request->insugg;
 			$insugg->requestIp = $request->getClientIp();
 			$insuggid = 0;
 			if($insugg->save()){
@@ -120,8 +119,7 @@ class Insugg extends Controller
 				//->where('userid',Auth::user()->userid)
 				->first();
 			if ($insugg) {
-				$insugg->insuggtitle = $request->insuggTitle;
-				$insugg->insuggcontent = $request->insuggContent;
+				$insugg->insugg = $request->insugg;
 				$insugg->requestIp = $request->getClientIp();
 				$insugg->save();
 				return Redirect::to('http://insugg.com');

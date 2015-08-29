@@ -7,10 +7,10 @@
         <h4 class="list-group-item-heading">
             {{$insugg->insuggtitle}}
         </h4>
-        <p class="list-group-item-text">{{$insugg->insuggcontent}}</p>
+        <p class="list-group-item-text">{{$insugg->insugg}}</p>
     </div>
     @foreach($suggestions as $suggestion)
-        <a href="insugg/{{$suggestion->suggestionid}}" class="list-group-item">
+        <a href="/suggestion/{{$suggestion->suggestionid}}" class="list-group-item">
             <h4 class="list-group-item-heading">{{$suggestion->suggestion}}</h4>
         </a>
     @endforeach

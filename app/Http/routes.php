@@ -35,6 +35,7 @@ Route::get('tag/{id}','Tag@show');
 
 Route::get('suggestion','Suggestion@index');
 Route::get('suggestion/{id}','Suggestion@show');
+Route::get('suggestion/{id}/delete','Suggestion@destroy');
 
 
 // Authentication routes...
@@ -54,6 +55,29 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 // Password reset routes...
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+
+/**
+ * Admin
+ */
+Route::get('admin/','AdminController@Index');
+
+Route::get('admin/user','AdminController@Users');
+
+Route::get('admin/insugg','AdminController@Index');
+
+Route::get('admin/suggestion','AdminController@Index');
+
+Route::get('admin/tag','AdminController@Index');
+
+Route::get('admin/statistics','AdminController@Index');
+
+Route::get('admin/monitor','AdminController@Index');
+
+/**
+ * /Admin
+ */
+
 
 
 //Aliases config/app.php de

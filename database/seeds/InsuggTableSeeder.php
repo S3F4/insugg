@@ -17,8 +17,7 @@ class InsuggTableSeeder extends Seeder
         DB::table('insugg')->delete();
         for($i=0;$i<100;$i++){
             \App\Insugg::create([
-                'insuggtitle' => $faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ",
-                'insuggcontent' => $faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ",
+                'insugg' => $faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ".$faker->word." ",
                 'requestip' => $faker->word,
                 'userid' => 1
             ]);
